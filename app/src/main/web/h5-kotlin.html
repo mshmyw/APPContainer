@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      .container {
+        background: orange;
+        height: 200px;
+      }
+      .button {
+       background: skyblue;
+       width: 50px;
+       height: 50px;
+       margin: 10px;
+      }
+    </style>
+    <title>test h5</title>
+</head>
+<body>
+<div class='container'>
+    <div>Hello kotlin app container</div>
+    <button class="button" onclick="onCallNativeClick()">按钮</button>
+</div>
+</body>
+<script src="https://unpkg.com/vconsole/dist/vconsole.min.js"></script>
+<script>
+  // VConsole will be exported to `window.VConsole` by default.
+  var vConsole = new window.VConsole();  
+  const onCallNativeClick = () => {
+    console.log("click h5");
+    alert('click h5');
+    const json = {name: 'html5'};
+    // call native(kotlin)方法
+    try {
+      window.jsInterface.shouToast(JSON.stringify(json));   
+      alert('jsInterface.shouToast success: ' + JSON.stringify(json));    
+    } catch (error) {
+      alert(error);    
+    }
+  }
+  // 定义方法，让native(kotlin)调用
+  const showMessage = (jsonStr) => {
+    alert(`kotlin调用到了此方法：${JSON.stringify(jsonStr)}`);
+  }
+</script>
+</html>

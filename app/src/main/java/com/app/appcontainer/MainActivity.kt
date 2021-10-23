@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Button
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
@@ -29,8 +30,13 @@ class MainActivity : AppCompatActivity() {
         //H5与Kotlin桥梁类通讯的桥梁类：第一个参数是被调用方法的对象，第二个参数是对象别名
         mWebView.addJavascriptInterface(JsMethods(this), "jsInterface")
 
-        //
-        mWebView.loadUrl("https://www.baidu.com")
+        // btn
+        val h5Btn = findViewById<Button>(R.id.h5btn)
+
+        h5Btn.setOnClickListener{
+            val h5Url = "http://192.168.0.101:8082/web/h5-kotlin.html"
+            mWebView.loadUrl(h5Url)
+        }
     }
 
     // 创建两个WebViewClient
